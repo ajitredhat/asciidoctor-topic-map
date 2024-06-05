@@ -3,6 +3,8 @@ import path from 'path';
 import express from 'express';
 import asciidoctor from 'asciidoctor';
 
+// FIXME: for now hardcoded the master.adoc path.
+const MASTER_ADOC_FILE = './rosa-install-classic/master.adoc'
 const app = express();
 const adoc = asciidoctor();
 
@@ -80,5 +82,5 @@ const parseMasterAdoc = (masterFilePath) => {
 app.listen(4000, () => {
     console.log('Running a GraphQL API server at http://localhost:4000/');
     // Specify master.adoc path
-    parseMasterAdoc('./rosa-install-classic/master.adoc')
+    parseMasterAdoc(MASTER_ADOC_FILE)
 });
