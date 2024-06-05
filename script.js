@@ -35,8 +35,12 @@ const parseAdocFile = (filePath, leveloffsetValue) => {
   
     return { title, sections, leveloffset: leveloffsetValue };
 };
-  
-// Parse master file to fetch all included references.
+
+/**
+ * Parse master file to fetch all included references.
+ * 
+ * @param {string} masterFilePath - The path to the master Asciidoctor file to parse.
+ */
 const parseMasterAdoc = (masterFilePath) => {
     const masterContent = fs.readFileSync(masterFilePath, 'utf8');
 
@@ -56,6 +60,8 @@ const parseMasterAdoc = (masterFilePath) => {
 
         // Read and Parse referenced adoc file to fetch section details.
         const sectionData = parseAdocFile(filePath, match[2]);
+
+        // Push sectionData per adoc file to topicMap.
         topicMap.push(sectionData);
     }
   
