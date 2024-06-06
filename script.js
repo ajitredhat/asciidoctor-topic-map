@@ -3,7 +3,7 @@ import path from 'path';
 import express from 'express';
 import asciidoctor from 'asciidoctor';
 
-// FIXME: for now hardcoded the master.adoc path.
+// FIXME: For now hardcoded the master.adoc path.
 const MASTER_ADOC_FILE = './rosa-install-classic/master.adoc'
 const app = express();
 const adoc = asciidoctor();
