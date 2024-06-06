@@ -25,9 +25,9 @@ This script reads master.adoc, extracts and parses all included references, and 
 
 3. Run script
 
-currently the file path for the master.adoc is hardcoded. you will need to specify the file path in script.js 
+**Important** Currently the file path for the master.adoc is hardcoded. you will need to specify the file path in [script.js](https://github.com/ajitredhat/asciidoctor-topic-map/blob/main/script.js#L7)
 
-        const MASTER_ADOC_FILE = <path to master.adoc>
+        const MASTER_ADOC_FILE = <PATH-TO-MASTER-ADOC-FILE>
 
 To run it, install the required packages and finally start it. Via command line, navigate to the folder where this repository was cloned to and use the following commands:
 
