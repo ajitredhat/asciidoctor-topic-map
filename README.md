@@ -37,7 +37,7 @@ Wait for it to finish all the package installation. Then run following command t
 
         node script.js
 
-
+This should execute the script and start the node server to parse input file.
 
 # License
 
@@ -46,4 +46,4 @@ Please see the [LICENSE](LICENSE) file for full details.
 
 ## Written by
 
-Ajit Kenjale Goncalves [@ajitredhat](https://github.com/ajitredhat).
+Ajit Kenjale [@ajitredhat](https://github.com/ajitredhat).
