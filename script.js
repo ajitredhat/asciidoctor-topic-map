@@ -4,7 +4,7 @@ import express from 'express';
 import asciidoctor from 'asciidoctor';
 
 // FIXME: For now hardcoded the master.adoc path, think of better solution.
-const MASTER_ADOC_FILE = '<PATH-TO-MASTER-ADOC-FILE>'
+const MASTER_ADOC_FILE = './rosa-install-classic/master.adoc'
 const app = express();
 const adoc = asciidoctor();
 
@@ -22,13 +22,20 @@ const parseAdocFile = (filePath, leveloffsetValue) => {
   
     const title = doc.getTitle();
 
+    
     // Fetch section details
-    const sections = doc.getSections().map(section => ({
-        title: section.getTitle(),
-        level: section.getLevel(),
-        id: section.getId(),
-        content: section.getContent(),
-    }));
+    const sections = doc.getSections().map(section => {
+        const content = section.getContent();
+        const contentType = getContentType(content);
+    
+        return {
+            title: section.getTitle(),
+            level: section.getLevel(),
+            id: section.getId(),
+            content: content,
+            contentType: contentType
+        };
+    });
 
     // WORKAROUND: to get leveloffset value
     if (leveloffsetValue) {
@@ -37,6 +44,18 @@ const parseAdocFile = (filePath, leveloffsetValue) => {
   
     return { title, sections, leveloffset: leveloffsetValue };
 };
+
+function getContentType(content) {
+    if (content.includes('<table>')) {
+        return 'table';
+    } else if (content.includes('<img')) {
+        return 'image';
+    } else if (content.match(/<h[1-6]>/)) {
+        return 'heading';
+    } else {
+        return 'text';
+    }
+}
 
 /**
  * Parse master file to fetch all included references.
